@@ -1,14 +1,15 @@
 import { useGetMyRecordsQuery } from "./API/MyRecords";
 
-const { data, error, isLoading } = useGetMyRecordsQuery;
-console.log('data:', data);
-console.log('error:', error);
-console.log('isLoading:', isLoading);
+
 
 export const MyRecords = () => {
+    const { data, error, isLoading } = useGetMyRecordsQuery(1);
+    console.log('data:', data);
+    console.log('error:', error);
+    console.log('isLoading:', isLoading);
     return (
         <>
-            {data && data.map(el => <p>My record #{el.id} - name:{el.name}</p>)}
+            {data && <p>My record #{data.id} - name:{data.name}</p>}
         
         </>
     )
