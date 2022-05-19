@@ -1,6 +1,9 @@
-export const ConfirmForm = () => {
+export const ConfirmForm = ({todelete, currId}) => {
     return (
-        <h2>Удалить? Y(да), N(нет)</h2>
-        
+        <>
+            <h3>Удалить?</h3><hr/>
+            <button type="text" onClick={() => todelete(true, currId)}>YES (ДА)</button>
+            <button type="text" onClick={() => todelete(false)}>NO (НЕТ)</button>
+        </>
     )
 }

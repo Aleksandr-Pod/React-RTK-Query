@@ -1,14 +1,15 @@
-import { useGetMyRecordsQuery } from "../API/MyRecords";
+import { useGetMyRecordsQuery, useDeleteMyRecordMutation } from "../API/MyRecords";
 import { RecordItem } from "./RecordItem";
 import { Modal } from "components/Modal/modal";
 import { useState } from 'react';
 import { AddForm } from '../Modal/AddForm';
 import { ConfirmForm } from "components/Confirmation/ConfirmForm";
 
-export const MyRecords = () => {
+export const RecordsList = () => {
     const { data } = useGetMyRecordsQuery("");
+    const [ deleteMyRecord ] = useDeleteMyRecordMutation();
     const [showModal, setShowModal] = useState(false);
-    const [modalContent, setModalContent] = useState(<AddForm/>)
+    const [modalContent, setModalContent] = useState(<AddForm />);
 
     const onAddRecord = () => {
         toggleModal();
@@ -16,31 +17,31 @@ export const MyRecords = () => {
     const onEditRecord = () => {
         console.log('Edit Record');
     }
-    const confirmation = () => {
-        toggleModal();
-        setModalContent(<ConfirmForm/>)
+    const confirmation = (id) => {
+        setModalContent(<ConfirmForm todelete={todelete} currId={id}/>)
+        setShowModal(true); // включаем модалку
+
+    }
+    const todelete = (res, currId) => {
+        console.log('delete access:', res);
+        console.log('current Id:', currId);
+        if (res) {
+            console.log('deleting ...');
+            deleteMyRecord(currId);
+            setModalContent(<AddForm />);
+        }
+        setShowModal(false); // выключаем модалку
     }
 
     const toggleModal = () => {
         setShowModal(!showModal);
     }
     const onKeyPress = (e) => {
-        console.log(e.code);
-        if (e.code === "Escape") {
-            toggleModal();
-            return;
-        }
-        if (e.code === "KeyY") {
-            console.log('confirmed');
-            toggleModal();
-        } else {
-            console.log("not confirmed");
-        }
-        
+        if (e.code === "Escape") toggleModal();
     }
     const onOverlayClick = (evt) => {
-    if (evt.target === evt.currentTarget) toggleModal({})
-  }
+        if (evt.target === evt.currentTarget) toggleModal()
+    }
     
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -52,7 +53,13 @@ export const MyRecords = () => {
                         <tr>
                             <th>#</th><th>Name</th><th>content</th><th>Options</th>
                         </tr>
-                        {data.map(el => <RecordItem key={el.id} itemData={el} Edit={onEditRecord} confirm={confirmation}/>)}
+                        {data.map(el => <RecordItem
+                            key={el.id}
+                            itemData={el}
+                            Edit={onEditRecord}
+                            confirmation={confirmation}
+                            
+                        />)}
                     </thead>
                 </table>)}
         </div>

@@ -1,5 +1,5 @@
 // import Pokemon from './Pokemon';
-import { MyRecords } from './MyRecords/MyRecords';
+import { RecordsList } from './MyRecords/RecordsList';
 
 
 export const App = () => {
@@ -8,7 +8,7 @@ export const App = () => {
   return (
     <div>
       {/* <Pokemon /> */}
-      <MyRecords/>
+      <RecordsList/>
     </div>
   );
 };

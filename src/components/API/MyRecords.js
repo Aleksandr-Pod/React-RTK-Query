@@ -25,7 +25,6 @@ export const myRecordsAPI = createApi({
             invalidatesTags: ['records']
         })
     }),
-
 })
 
 export const { useGetMyRecordsQuery, useAddMyRecordMutation, useDeleteMyRecordMutation } = myRecordsAPI;
