@@ -13,3 +13,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+table {
+  margin: 20px auto;
+}
+
+th {
+  padding: 15px;
+  background-color: darkcyan;
+}
+
+td {
+  padding: 10px;
+  background-color: aquamarine;
+}
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+.Modal {
+  max-width: calc(50vw);
+  max-height: calc(50vh);
+  background-color: blanchedalmond;
+}
