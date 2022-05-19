@@ -16,8 +16,8 @@ export const RecordsList = () => {
         setModalContent(<AddForm />)
         toggleModal();
     }
-    const onEditRecord = () => {
-        console.log('Edit Record');
+    const onEditRecord = (id) => {
+        console.log('Edit Record, id:', id);
     }
     const confirmation = (id) => {
         setModalContent(<ConfirmForm todelete={todelete} currId={id}/>)
@@ -29,7 +29,7 @@ export const RecordsList = () => {
     }
     const recordDetails = (id) => {
         setModalContent(<RecordDetails id={id}/>)
-        setShowModal(true);
+        setShowModal(true); // включаем модалку
     }
     const toggleModal = () => {
         setShowModal(!showModal);
