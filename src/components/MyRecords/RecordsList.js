@@ -3,15 +3,17 @@ import { RecordItem } from "./RecordItem";
 import { Modal } from "components/Modal/modal";
 import { useState } from 'react';
 import { AddForm } from '../Modal/AddForm';
-import { ConfirmForm } from "components/Confirmation/ConfirmForm";
+import { ConfirmForm } from "components/Modal/ConfirmForm";
+import { RecordDetails } from "components/Modal/RecordDetails";
 
 export const RecordsList = () => {
     const { data } = useGetMyRecordsQuery("");
     const [ deleteMyRecord ] = useDeleteMyRecordMutation();
     const [showModal, setShowModal] = useState(false);
-    const [modalContent, setModalContent] = useState(<AddForm />);
+    const [modalContent, setModalContent] = useState();
 
     const onAddRecord = () => {
+        setModalContent(<AddForm />)
         toggleModal();
     }
     const onEditRecord = () => {
@@ -20,19 +22,15 @@ export const RecordsList = () => {
     const confirmation = (id) => {
         setModalContent(<ConfirmForm todelete={todelete} currId={id}/>)
         setShowModal(true); // включаем модалку
-
     }
     const todelete = (res, currId) => {
-        console.log('delete access:', res);
-        console.log('current Id:', currId);
-        if (res) {
-            console.log('deleting ...');
-            deleteMyRecord(currId);
-            setModalContent(<AddForm />);
-        }
-        setShowModal(false); // выключаем модалку
+        if (res) deleteMyRecord(currId);
+        setShowModal(false);
     }
-
+    const recordDetails = (id) => {
+        setModalContent(<RecordDetails id={id}/>)
+        setShowModal(true);
+    }
     const toggleModal = () => {
         setShowModal(!showModal);
     }
@@ -56,9 +54,9 @@ export const RecordsList = () => {
                         {data.map(el => <RecordItem
                             key={el.id}
                             itemData={el}
-                            Edit={onEditRecord}
+                            edit={onEditRecord}
                             confirmation={confirmation}
-                            
+                            recordDetails={recordDetails}
                         />)}
                     </thead>
                 </table>)}

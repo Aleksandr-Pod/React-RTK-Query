@@ -6,7 +6,11 @@ export const myRecordsAPI = createApi({
     tagTypes: ['records'],
     endpoints: (builder) => ({
         getMyRecords: builder.query({
-            query: number => `${number}`,
+            query: () => '',
+            providesTags: ['records']
+        }),
+        getMyRecordById: builder.query({
+            query: id => `${id}`,
             providesTags: ['records']
         }),
         addMyRecord: builder.mutation({
@@ -23,9 +27,10 @@ export const myRecordsAPI = createApi({
             method: "DELETE",
             }),
             invalidatesTags: ['records']
-        })
+        }),
+
     }),
 })
 
-export const { useGetMyRecordsQuery, useAddMyRecordMutation, useDeleteMyRecordMutation } = myRecordsAPI;
+export const { useGetMyRecordsQuery, useAddMyRecordMutation, useDeleteMyRecordMutation, useGetMyRecordByIdQuery } = myRecordsAPI;
 

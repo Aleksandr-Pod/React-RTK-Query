@@ -1,14 +1,16 @@
-export const RecordItem = ({ itemData, Edit, confirmation }) => {
+import { DataRow } from "./RecordItem-styled";
+
+export const RecordItem = ({ itemData, edit, confirmation, recordDetails }) => {
 
     return (
-        <tr>
-            <td>{itemData.id}</td>
-            <td>{itemData.name}</td>
-            <td>{itemData.content}</td>
+        <DataRow >
+            <td onClick={() => recordDetails(itemData.id)}>{itemData.id}</td>
+            <td onClick={() => recordDetails(itemData.id)}>{itemData.name}</td>
+            <td onClick={() => recordDetails(itemData.id)}>{itemData.content}</td>
             <td>
                 <button type="text" onClick={() => confirmation(itemData.id)}>Del</button>
-                <button type="text" onClick={() => Edit(itemData.id)}>Edit</button>
+                <button type="text" onClick={() => edit(itemData.id)}>Edit</button>
             </td> 
-        </tr>
+        </DataRow>
     )
 } 

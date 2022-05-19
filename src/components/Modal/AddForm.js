@@ -20,12 +20,12 @@ export const AddForm = () => {
         document.getElementById("start").select();
     }
     return (<div className="formBox">
-        <h2>ModalWindow</h2>
-        <form style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}} onSubmit={onSubmit}>
+        <h2 style={{textAlign: "center"}}>Add record</h2>
+        <form onSubmit={onSubmit}>
             <label>Name
                 <input type="text" name="name" id="start"/>
             </label>
-            <br/>
+            <br/><br/>
             <label>Content
                 <input type="text" name="content"/>
             </label>
