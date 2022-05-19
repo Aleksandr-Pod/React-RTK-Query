@@ -19,6 +19,7 @@ export const AddForm = () => {
         e.target.elements.content.value = "";
         document.getElementById("start").select();
     }
+    
     return (<div className="formBox">
         <h2 style={{textAlign: "center"}}>Add record</h2>
         <form onSubmit={onSubmit}>
