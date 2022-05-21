@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { AddForm } from '../Modal/AddForm';
 import { ConfirmForm } from "components/Modal/ConfirmForm";
 import { RecordDetails } from "components/Modal/RecordDetails";
+import { EditForm } from "components/Modal/EditForm";
 
 export const RecordsList = () => {
     const { data } = useGetMyRecordsQuery("");
@@ -16,9 +17,7 @@ export const RecordsList = () => {
         setModalContent(<AddForm />)
         toggleModal();
     }
-    const onEditRecord = (id) => {
-        console.log('Edit Record, id:', id);
-    }
+
     const confirmation = (id) => {
         setModalContent(<ConfirmForm todelete={todelete} currId={id}/>)
         setShowModal(true); // включаем модалку
@@ -30,6 +29,10 @@ export const RecordsList = () => {
     const recordDetails = (id) => {
         setModalContent(<RecordDetails id={id}/>)
         setShowModal(true); // включаем модалку
+    }
+    const onEditRecord = (data) => {
+        setModalContent(<EditForm data={data} closeModal={() => setShowModal(false)}/>);
+        setShowModal(true);
     }
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -55,6 +58,7 @@ export const RecordsList = () => {
                             key={el.id}
                             itemData={el}
                             edit={onEditRecord}
+                            closeModal={toggleModal}
                             confirmation={confirmation}
                             recordDetails={recordDetails}
                         />)}

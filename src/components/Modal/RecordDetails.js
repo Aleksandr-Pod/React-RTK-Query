@@ -2,13 +2,15 @@ import { useGetMyRecordByIdQuery } from "components/API/MyRecords";
 
 export const RecordDetails = ({ id }) => {
 
-    const { getMyRecordById } = useGetMyRecordByIdQuery(id);
-    console.log('recordsDetails', getMyRecordById); // undefined
+    const { data: myrecordDetails } = useGetMyRecordByIdQuery(id);
     return (
-        <>
-            <h3>MyRecordById - {id}</h3>
-            {/* <p>{getMyRecordById.name}</p>
-            <p>{getMyRecordById.content}</p> */}
+        <>  
+            {myrecordDetails &&
+                <>
+                    <h3>Details Record #{id}</h3><hr/>
+                    <p>Name:{myrecordDetails?.name}</p>
+                    <p>Content:{myrecordDetails?.content}</p>
+                </>}
         </>
     )
 }

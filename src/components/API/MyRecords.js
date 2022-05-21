@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const myRecordsAPI = createApi({
     reducerPath: 'myRecordsAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/records/" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3030/records/" }),
     tagTypes: ['records'],
     endpoints: (builder) => ({
         getMyRecords: builder.query({
@@ -28,9 +28,23 @@ export const myRecordsAPI = createApi({
             }),
             invalidatesTags: ['records']
         }),
+        editMyRecord: builder.mutation({
+            query: data => ({
+                url: `${data.id}`,
+                method: "PUT",
+                body: data
+            }),
+            invalidatesTags: ['records']
+        })
 
     }),
 })
 
-export const { useGetMyRecordsQuery, useAddMyRecordMutation, useDeleteMyRecordMutation, useGetMyRecordByIdQuery } = myRecordsAPI;
+export const {
+    useGetMyRecordsQuery,
+    useAddMyRecordMutation,
+    useDeleteMyRecordMutation,
+    useGetMyRecordByIdQuery,
+    useEditMyRecordMutation
+} = myRecordsAPI;
 
