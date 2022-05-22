@@ -15,9 +15,8 @@ export const RecordsList = () => {
 
     const onAddRecord = () => {
         setModalContent(<AddForm />)
-        toggleModal();
+        setShowModal(true); // включаем модалку
     }
-
     const confirmation = (id) => {
         setModalContent(<ConfirmForm todelete={todelete} currId={id}/>)
         setShowModal(true); // включаем модалку
@@ -34,31 +33,27 @@ export const RecordsList = () => {
         setModalContent(<EditForm data={data} closeModal={() => setShowModal(false)}/>);
         setShowModal(true);
     }
-    const toggleModal = () => {
-        setShowModal(!showModal);
-    }
     const onKeyPress = (e) => {
-        if (e.code === "Escape") toggleModal();
+        if (e.code === "Escape") setShowModal(!showModal);
     }
     const onOverlayClick = (evt) => {
-        if (evt.target === evt.currentTarget) toggleModal()
+        if (evt.target === evt.currentTarget) setShowModal(!showModal)
     }
-    
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <button style={{width: "200px"}} tybe="text" onClick={onAddRecord}>Add data</button>
             {showModal && <Modal onKeyPress={onKeyPress} handleOverlayClick={onOverlayClick}>{modalContent}</Modal>}
             {data && (
                 <table>
-                    <thead>
-                        <tr>
-                            <th>#</th><th>Name</th><th>content</th><th>Options</th>
+                    <thead><tr>
+                        {Object.keys(data[0]).map((el, idx) => (<th key={idx}>{el}</th>))}
+                        <th>Options</th>
                         </tr>
                         {data.map(el => <RecordItem
                             key={el.id}
                             itemData={el}
                             edit={onEditRecord}
-                            closeModal={toggleModal}
+                            closeModal={setShowModal}
                             confirmation={confirmation}
                             recordDetails={recordDetails}
                         />)}

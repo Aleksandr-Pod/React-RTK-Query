@@ -1,15 +1,15 @@
 import { useGetMyRecordByIdQuery } from "components/API/MyRecords";
 
 export const RecordDetails = ({ id }) => {
-
     const { data: myrecordDetails } = useGetMyRecordByIdQuery(id);
     return (
         <>  
             {myrecordDetails &&
                 <>
-                    <h3>Details Record #{id}</h3><hr/>
-                    <p>Name:{myrecordDetails?.name}</p>
-                    <p>Content:{myrecordDetails?.content}</p>
+                    <h3>Details</h3><hr />
+                    {Object.keys(myrecordDetails).map((el, idx) => (
+                        <p><b>{el}:</b> {myrecordDetails[el]}</p>
+                    ))}
                 </>}
         </>
     )
