@@ -1,6 +1,6 @@
 import { DataRow } from "./RecordItem-styled";
 
-export const RecordItem = ({ itemData, edit, closeModal, confirmation, recordDetails }) => {
+export const RecordItem = ({ itemData, edit, confirmation, recordDetails }) => {
 
     return (
         <DataRow >{Object.keys(itemData).map((el, idx) => (

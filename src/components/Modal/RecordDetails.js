@@ -8,7 +8,7 @@ export const RecordDetails = ({ id }) => {
                 <>
                     <h3>Details</h3><hr />
                     {Object.keys(myrecordDetails).map((el, idx) => (
-                        <p><b>{el}:</b> {myrecordDetails[el]}</p>
+                        <p key={idx}><b>{el}:</b> {myrecordDetails[el]}</p>
                     ))}
                 </>}
         </>

@@ -6,7 +6,6 @@ export const AddForm = () => {
     const onSubmit = async e => {
         e.preventDefault();
         const data = {
-        id: Date.now(),
         name: e.target.elements.name.value,
         content: e.target.elements.content.value,
         value: e.target.elements.value.value
@@ -26,11 +25,11 @@ export const AddForm = () => {
         <h2>Add record</h2>
         <form onSubmit={onSubmit}>
             {fields.map((el, idx) => (
-                <>
-                <label>{el}
-                <input type="text" name={el} id="start"/>
-                </label><br/>
-                </>
+                <li key={idx}>
+                    <label>{el}
+                    <input type="text" name={el} id="start"/>
+                    </label><br/>
+                </li>
             ))}
             <hr/>
             <button style={{ margin: "auto" }}>Submit</button>

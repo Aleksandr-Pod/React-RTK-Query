@@ -54,3 +54,12 @@ td {
 h1, h2, h3, h4 {
   text-align: center;
 }
+.confirm-button {
+  display: flex;
+  justify-content: space-around;
+}
+.main {
+  margin: 10 auto;
+  padding: 10px;
+  background-color: blanchedalmond;
+}

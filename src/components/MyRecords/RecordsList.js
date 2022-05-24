@@ -8,7 +8,8 @@ import { RecordDetails } from "components/Modal/RecordDetails";
 import { EditForm } from "components/Modal/EditForm";
 
 export const RecordsList = () => {
-    const { data } = useGetMyRecordsQuery("");
+    const { data } = useGetMyRecordsQuery();
+
     const [ deleteMyRecord ] = useDeleteMyRecordMutation();
     const [showModal, setShowModal] = useState(false);
     const [modalContent, setModalContent] = useState();
@@ -43,7 +44,7 @@ export const RecordsList = () => {
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <button style={{width: "200px"}} tybe="text" onClick={onAddRecord}>Add data</button>
             {showModal && <Modal onKeyPress={onKeyPress} handleOverlayClick={onOverlayClick}>{modalContent}</Modal>}
-            {data && (
+            {data && (data.length !== 0) && (
                 <table>
                     <thead><tr>
                         {Object.keys(data[0]).map((el, idx) => (<th key={idx}>{el}</th>))}

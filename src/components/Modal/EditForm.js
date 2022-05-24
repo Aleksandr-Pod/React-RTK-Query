@@ -34,8 +34,8 @@ export const EditForm = ({ data, closeModal }) => {
             <h2>EDIT FORM</h2>
             <p>record #{data.id}</p><hr />
             <form onSubmit={onSubmit}>
-            {/* генерируем все поля кроме "id", c 1-го элемента */}
-                {Object.keys(data).slice(1).map((el, idx) => (
+            {/* генерируем все поля кроме "id", последнего элемента */}
+                {Object.keys(data).slice(0, (Object.keys(data).length-1)).map((el, idx) => (
                     <>
                         <label key={idx}>{el}: 
                             <input type="text" name={el} value={card[el]} onChange={onChange}/>
