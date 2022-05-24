@@ -2,7 +2,7 @@
   "name": "home",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aleksandr-pod.github.io/react-rtk-query/",
+  "homepage": "https://aleksandr-pod.github.io/React-RTK-Query/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.3",
