@@ -21,13 +21,18 @@ export const EditForm = ({ data, closeModal }) => {
             <form onSubmit={onSubmit}>
             {/* генерируем все поля кроме "id", последнего элемента */}
                 {Object.keys(data).slice(0, (Object.keys(data).length-1)).map((el, idx) => (
-                    <>
-                        <label>{el}
-                            <input key={idx} type="text" name={el} value={card[el]} onChange={onChange}/>
+                    <li key={idx} style={{ listStyle: 'none' }}>
+                        <label style={{display: 'flex'}}>{el+': '}
+                            <input 
+                            style={{marginLeft: 'auto'}}
+                            type="text"
+                            name={el}
+                            value={card[el]}
+                            onChange={onChange}/>
                         </label><br/>
-                    </>
+                    </li>
                 ))}
-                <button type='submit'>Save changes</button>
+                <hr/><button type='submit'>Save changes</button>
             </form>
         </>
     )

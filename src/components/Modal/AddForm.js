@@ -26,9 +26,9 @@ export const AddForm = () => {
         <h2>Add record</h2>
         <form onSubmit={onSubmit}>
             {fields.map((el, idx) => (
-                <li key={idx}>
-                    <label>{el}
-                    <input type="text" name={el} id="start"/>
+                <li key={idx} style={{ listStyle: 'none' }}>
+                    <label style={{display: 'flex'}}>{el+': '}
+                    <input style={{marginLeft: 'auto'}} type="text" name={el} id="start"/>
                     </label><br/>
                 </li>
             ))}

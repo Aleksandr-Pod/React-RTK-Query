@@ -39,7 +39,7 @@ td {
   z-index: 100;
 }
 .Modal {
-  max-width: calc(80vw);
+  width: 300px;
   max-height: calc(80vh);
   padding: 10px;
   background-color: blanchedalmond;
