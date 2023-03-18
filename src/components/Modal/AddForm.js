@@ -2,18 +2,19 @@ import { useAddMyRecordMutation } from 'components/API/MyRecords';
 
 export const AddForm = () => {
     const [addRecord] = useAddMyRecordMutation();
-    const fields = ["name", "content", "value"]
+    const fields = ["name", "content", "value"];
+
     const onSubmit = async e => {
         e.preventDefault();
         const data = {
-        name: e.target.elements.name.value,
-        content: e.target.elements.content.value,
-        value: e.target.elements.value.value
+            name: e.target.elements.name.value,
+            content: e.target.elements.content.value,
+            value: e.target.elements.value.value
         }
         try {
-        await addRecord(data);
+            await addRecord(data);
         } catch (error) {
-        console.log('Error:', error);
+            console.log('Error:', error);
         }
         e.target.elements.name.value = "";
         e.target.elements.content.value = "";

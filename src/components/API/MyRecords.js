@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// https://9g4ym4tj9o.api.quickmocker.com
-// https://628a0f12e5e5a9ad32206b7a.mockapi.io/
+const baseUrl = "https://641322a7a68505ea732a5d2e.mockapi.io/api/v1/container";
+
 export const myRecordsAPI = createApi({
     reducerPath: 'myRecordsAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: "https://628a0f12e5e5a9ad32206b7a.mockapi.io/records/" }),
+    baseQuery: fetchBaseQuery({ baseUrl }),
     tagTypes: ['records'],
     endpoints: (builder) => ({
         getMyRecords: builder.query({
